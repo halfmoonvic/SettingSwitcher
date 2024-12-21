@@ -7,33 +7,34 @@ def plugin_loaded():
     settings = sublime.load_settings('toggle_theme.sublime-settings')
     resources = sublime.find_resources('toggle_theme.sublime-settings')
 
-    if resources:
-        content = sublime.load_resource(resources[0])
-        settings_dict = sublime.decode_value(content)
-        theme_types = settings_dict.keys()
+    if not resources:
+        return
 
-        commands = []
-        for theme_type in theme_types:
-            commands.append({
-                "caption": "Theme: Switch to " + theme_type.title(),
-                "command": "toggle_theme",
-                "args": {"theme_type": theme_type}
-            })
+    content = sublime.load_resource(resources[0])
+    settings_dict = sublime.decode_value(content)
+    theme_types = settings_dict.keys()
 
-        # 将命令写入文件
-        package_path = os.path.join(sublime.packages_path(), "ToggleTheme")
+    commands = []
+    for theme_type in theme_types:
+        commands.append({
+            "caption": "Theme: Switch to " + theme_type.title(),
+            "command": "toggle_theme",
+            "args": {"theme_type": theme_type}
+        })
 
-        if not os.path.exists(package_path):
-            os.makedirs(package_path)
+    package_path = os.path.join(sublime.packages_path(), "ToggleTheme")
 
-        commands_path = os.path.join(package_path, "Default.sublime-commands")
+    if not os.path.exists(package_path):
+        os.makedirs(package_path)
 
-        try:
-            with open(commands_path, 'w', encoding='utf-8') as f:
-                json_content = sublime.encode_value(commands, pretty=True)
-                f.write(json_content)
-        except Exception as e:
-            print("Error writing file:", str(e))
+    commands_path = os.path.join(package_path, "Default.sublime-commands")
+
+    try:
+        with open(commands_path, 'w', encoding='utf-8') as f:
+            json_content = sublime.encode_value(commands, pretty=True)
+            f.write(json_content)
+    except Exception as e:
+        print("Error writing file:", str(e))
 
 class ToggleThemeCommand(sublime_plugin.ApplicationCommand):
     def run(self, theme_type):

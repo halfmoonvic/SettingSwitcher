@@ -10,6 +10,8 @@
 *cache
 *.pyc
 
+Default.sublime-commands
+
 # OS
 # =============================
 

@@ -19,7 +19,7 @@ Create a `SettingSwitcher.sublime-settings` file in your User package directory 
 
 ```json
 {
-    "coding": {
+    "command1": {
         "Preferences.sublime-settings": {
             "font_size": 14,
             "word_wrap": true
@@ -28,7 +28,7 @@ Create a `SettingSwitcher.sublime-settings` file in your User package directory 
             "setting1": "value1"
         }
     },
-    "presentation": {
+    "command2": {
         "Preferences.sublime-settings": {
             "font_size": 18,
             "word_wrap": false
@@ -40,7 +40,7 @@ Create a `SettingSwitcher.sublime-settings` file in your User package directory 
 ## Usage
 
 1. Open the command palette (Ctrl+Shift+P / Cmd+Shift+P)
-2. Type "SettingSwitcher: Switch to" and select your desired configuration
+2. Type "SettingSwitcher: Switch to" and select your desired configuration, "command1" or "command2"
 3. The plugin will automatically update all settings defined in that configuration
 
 ## How It Works

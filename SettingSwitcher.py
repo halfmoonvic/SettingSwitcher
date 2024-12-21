@@ -54,6 +54,10 @@ def plugin_loaded():
     )
 
 
+def plugin_unloaded():
+    sublime.load_settings(SETTING_FILE).clear_on_change("generate_commands")
+
+
 class SettingSwitcherCommand(sublime_plugin.ApplicationCommand):
     def run(self, command_type):
         switcher_settings = sublime.load_settings(SETTING_FILE)

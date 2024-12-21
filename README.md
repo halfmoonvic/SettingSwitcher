@@ -10,8 +10,9 @@ A Sublime Text plugin that enables quick switching between different setting con
 
 ## Installation
 
-1. Clone this repository to your Sublime Text Packages directory
-2. Restart Sublime Text
+1. Clone or download git repo into your packages folder
+2. Using Package Control:
+   Run "Package Control: Install Package" command, and find SettingSwitcher package
 
 ## Configuration
 
@@ -19,19 +20,16 @@ Create a `SettingSwitcher.sublime-settings` file in your User package directory 
 
 ```json
 {
-    "command1": {
-        "Preferences.sublime-settings": {
-            "font_size": 14,
-            "word_wrap": true
-        },
-        "Package1.sublime-settings": {
-            "setting1": "value1"
+    "light": {
+        "Preferences": {
+            "color_scheme": "Packages/Color Scheme - Default/Breakers.sublime-color-scheme",
+            "font_size": 14
         }
     },
-    "command2": {
-        "Preferences.sublime-settings": {
-            "font_size": 18,
-            "word_wrap": false
+    "dark": {
+        "Preferences": {
+            "color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
+            "font_size": 14
         }
     }
 }
@@ -40,7 +38,7 @@ Create a `SettingSwitcher.sublime-settings` file in your User package directory 
 ## Usage
 
 1. Open the command palette (Ctrl+Shift+P / Cmd+Shift+P)
-2. Type "SettingSwitcher: Switch to" and select your desired configuration, "command1" or "command2"
+2. Type "setting_switcher: switch to" and select your desired configuration, like "switch to light" or "switch to dark"
 3. The plugin will automatically update all settings defined in that configuration
 
 ## How It Works

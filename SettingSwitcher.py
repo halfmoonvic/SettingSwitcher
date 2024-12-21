@@ -4,27 +4,21 @@ import os
 import json
 
 def plugin_loaded():
-    settings = sublime.load_settings('SettingSwitcher.sublime-settings')
-    resources = sublime.find_resources('SettingSwitcher.sublime-settings')
+    # open user preferences commands
+    resources = sublime.find_resources('commands.json')
+    commands_content = sublime.load_resource(resources[0])
+    commands = sublime.decode_value(commands_content)
 
-    if not resources:
+    # setting switcher settings
+    setting_resources = sublime.find_resources('SettingSwitcher.sublime-settings')
+    if not setting_resources:
         return
 
-    content = sublime.load_resource(resources[-1] if len(resources) > 1 else resources[0])
+    content = sublime.load_resource(setting_resources[-1] if len(setting_resources) > 1 else setting_resources[0])
     settings_dict = sublime.decode_value(content)
     command_types = settings_dict.keys()
 
-    commands = [
-        {
-            "caption": "Preferences: SettingSwitcher Settings",
-            "command": "edit_settings",
-            "args": {
-                "base_file": "${packages}/SettingSwitcher/SettingSwitcher.sublime-settings",
-                "default": "// SettingSwitcher Settings - User\n{\n\t$0\n}\n"
-            }
-        }
-    ]
-
+    # add dynamic commands
     for command_type in command_types:
         commands.append({
             "caption": "setting_switcher: Switch to " + command_type.title(),
@@ -51,7 +45,7 @@ class SettingSwitcherCommand(sublime_plugin.ApplicationCommand):
         switcher_settings = sublime.load_settings('SettingSwitcher.sublime-settings')
         settings = switcher_settings.get(command_type)
 
-        # Traverse all configured plug-ins
+        # traverse all configured plug-ins
         for plugin_name, setting_map in settings.items():
             # plugins settings
             settings_filename = plugin_name + '.sublime-settings'

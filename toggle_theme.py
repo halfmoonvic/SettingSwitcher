@@ -4,24 +4,25 @@ import os
 
 class ToggleThemeCommand(sublime_plugin.ApplicationCommand):
     def run(self, theme_type):
-        # 获取设置文件
         settings = sublime.load_settings('toggle_theme.sublime-settings')
-
-        # 获取主题配置
         theme_settings = settings.get(theme_type)
 
-        # {'color_scheme': 'Packages/Color Scheme - Default/Mariana.sublime-color-scheme', 'file_browser': {'file_browser_theme': 'dark'}}
+        # Traverse all configured plug-ins
+        for plugin_name, plugin_settings in theme_settings.items():
 
-        # 更新 Sublime Text 主题
-        if 'color_scheme' in theme_settings:
-            preferences = sublime.load_settings('Preferences.sublime-settings')
-            preferences.set('color_scheme', theme_settings['color_scheme'])
-            sublime.save_settings('Preferences.sublime-settings')
+            # Preferences.sublime-settings
+            if plugin_name == 'color_scheme':
+                preferences = sublime.load_settings('Preferences.sublime-settings')
+                preferences.set('color_scheme', plugin_settings)
+                sublime.save_settings('Preferences.sublime-settings')
+                continue
 
-        # 更新 FileBrowser 主题
-        if 'dired' in theme_settings:
-            file_browser_settings = sublime.load_settings('dired.sublime-settings')
-            for key, value in theme_settings['dired'].items():
-                print(key, value)
-                file_browser_settings.set(key, value)
-            sublime.save_settings('dired.sublime-settings')
+            # plugins settings
+            settings_filename = plugin_name + '.sublime-settings'
+            plugin_settings_obj = sublime.load_settings(settings_filename)
+
+            for key, value in plugin_settings.items():
+                plugin_settings_obj.set(key, value)
+
+            # save settings
+            sublime.save_settings(settings_filename)

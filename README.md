@@ -2,6 +2,8 @@
 
 A Sublime Text plugin that enables quick switching between different setting configurations.
 
+![](./preview.gif)
+
 ## Features
 
 -   Switch multiple plugin settings with a single command

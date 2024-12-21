@@ -10,14 +10,24 @@ def plugin_loaded():
     if not resources:
         return
 
-    content = sublime.load_resource(resources[0])
+    content = sublime.load_resource(resources[-1] if len(resources) > 1 else resources[0])
     settings_dict = sublime.decode_value(content)
     command_types = settings_dict.keys()
 
-    commands = []
+    commands = [
+        {
+            "caption": "Preferences: SettingSwitcher Settings",
+            "command": "edit_settings",
+            "args": {
+                "base_file": "${packages}/SettingSwitcher/SettingSwitcher.sublime-settings",
+                "default": "// SettingSwitcher Settings - User\n{\n\t$0\n}\n"
+            }
+        }
+    ]
+
     for command_type in command_types:
         commands.append({
-            "caption": "SettingSwitcher: Switch to " + command_type.title(),
+            "caption": "setting_switcher: Switch to " + command_type.title(),
             "command": "setting_switcher",
             "args": {"command_type": command_type}
         })

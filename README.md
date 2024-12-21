@@ -23,15 +23,23 @@ Create a `SettingSwitcher.sublime-settings` file in your User package directory 
 ```json
 {
     "light": {
+        // set Preferences.sublime-settings
         "Preferences": {
             "color_scheme": "Packages/Color Scheme - Default/Breakers.sublime-color-scheme",
             "font_size": 14
+        },
+        // set Markdown.sublime-settings for Markdown plugin
+        "Markdown": {
+            "color_scheme": "MarkdownEditor-ArcDark.sublime-color-scheme"
         }
     },
     "dark": {
         "Preferences": {
             "color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
             "font_size": 14
+        },
+        "Markdown": {
+            "color_scheme": "MarkdownEditor.sublime-color-scheme"
         }
     }
 }

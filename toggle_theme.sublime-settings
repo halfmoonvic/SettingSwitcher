@@ -1,6 +1,9 @@
 {
     "light": {
-        "color_scheme": "Packages/Color Scheme - Default/Breakers.sublime-color-scheme",
+        "Preferences": {
+            "color_scheme": "Packages/Color Scheme - Default/Breakers.sublime-color-scheme",
+            "font_size": 18,
+        },
         "dired": {
             "color_scheme": "Packages/User/file_browser/dired.light.hidden-tmTheme"
         },
@@ -9,7 +12,10 @@
         }
     },
     "dark": {
-        "color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
+        "Preferences": {
+            "color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme",
+            "font_size": 18,
+        },
         "dired": {
             "color_scheme": "Packages/User/file_browser/dired.medium_dark.hidden-tmTheme"
         },

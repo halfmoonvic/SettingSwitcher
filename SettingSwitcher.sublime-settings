@@ -1,12 +1,12 @@
 {
     "light": {
         "Preferences": {
-            "color_scheme": "Packages/Color Scheme - Default/Breakers.sublime-color-scheme"
+            "color_scheme": "Breakers.sublime-color-scheme"
         }
     },
     "dark": {
         "Preferences": {
-            "color_scheme": "Packages/Color Scheme - Default/Mariana.sublime-color-scheme"
+            "color_scheme": "Mariana.sublime-color-scheme"
         }
     }
 }

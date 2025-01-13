@@ -51,6 +51,26 @@ Create a `SettingSwitcher.sublime-settings` file in your User package directory 
 2. Type "setting_switcher: switch to" and select your desired configuration, like "switch to light" or "switch to dark"
 3. The plugin will automatically update all settings defined in that configuration
 
+### Keyboard Shortcuts
+
+You can set keyboard shortcuts by creating or editing your key bindings file:
+
+```json
+// Preferences -> Key Bindings (User)
+[
+    {
+        "keys": ["your_preferred_shortcut"],
+        "command": "setting_switcher",
+        "args": { "command_type": "light" }
+    },
+    {
+        "keys": ["your_preferred_shortcut"],
+        "command": "setting_switcher",
+        "args": { "command_type": "dark" }
+    }
+]
+```
+
 ## How It Works
 
 The plugin loads configurations from `SettingSwitcher.sublime-settings` on startup and creates command palette entries for each configuration. When a switch command is executed, it updates the settings of all specified packages according to the selected configuration.

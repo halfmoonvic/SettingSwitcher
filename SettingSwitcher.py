@@ -6,12 +6,19 @@ SETTING_FILE = "SettingSwitcher.sublime-settings"
 
 
 def generate_commands():
-    # setting_switcher preferences commands
-    resources = sublime.find_resources("commands.json")
-    commands_content = sublime.load_resource(resources[0])
-    commands = sublime.decode_value(commands_content)
+    commands = [
+        # setting_switcher preferences commands
+        {
+            "caption": "Preferences: SettingSwitcher Settings",
+            "command": "edit_settings",
+            "args": {
+                "base_file": "${packages}/SettingSwitcher/SettingSwitcher.sublime-settings",
+                "default": "// SettingSwitcher Settings - User\n{\n\t$0\n}\n",
+            },
+        }
+    ]
 
-    # setting switcher settings
+    # settings
     setting_resources = sublime.find_resources(SETTING_FILE)
     if not setting_resources:
         return
